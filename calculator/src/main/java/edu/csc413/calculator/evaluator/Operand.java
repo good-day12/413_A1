@@ -8,22 +8,24 @@ public class Operand {
     /**
      * construct operand from string token.
      */
-    public Operand(String token) {
+    private int num;
 
+    public Operand(String token) {
+        num = Integer.parseInt(token);
     }
 
     /**
      * construct operand from integer
      */
     public Operand(int value) {
-
+        num = value;
     }
 
     /**
      * return value of operand
      */
     public int getValue() {
-        return 0;
+        return num;
     }
 
     /**
@@ -31,6 +33,15 @@ public class Operand {
      * operand.
      */
     public static boolean check(String token) {
-        return false;
+        //use try/catch along with Integer parseInt to check if Int,
+
+        try {
+            Integer.parseInt(token);
+        } catch(NumberFormatException ex) {
+            //if exception is thrown, our number is not an Int so return false
+            return false;
+        }
+        //if no exception thrown
+        return true;
     }
 }
