@@ -14,7 +14,7 @@ public class PowerOperator extends Operator {
         int result = operandOne.getValue();
         //for loop to multiply operandOne value by itself for operandTwo number of times
         for (int i = 0; i < operandTwo.getValue(); i++){
-            result *= operandOne.getValue();
+            result *= result;
         }
         return new Operand(result);
     }

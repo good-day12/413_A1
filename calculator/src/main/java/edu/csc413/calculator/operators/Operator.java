@@ -2,6 +2,9 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class Operator {
     // The Operator class should contain an instance of a HashMap
     // This map will use keys as the tokens we're interested in,
@@ -13,6 +16,28 @@ public abstract class Operator {
     // HashMap operators = new HashMap();
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
+
+//    static Map<String,Operator> operators;
+//    static {
+//        operators.put("+", new AddOperator()); //<-will create add operator object and put into map
+//        operators.get("+"); //<- will get the same object over and over again, with different references to it
+//        operators.get("+"); //more efficient for memory, reuse the objects
+//        operators.get("+");
+//        operators.get("+");
+//    }
+
+    //this should be private right?
+    static private Map<String,Operator> operators;
+    static { //static will run once while class is initially loaded
+        //load up hashmap
+        operators = new HashMap<>();
+        operators.put("+", new AddOperator());
+        operators.put("-", new SubtractOperator());
+        operators.put("/", new DivideOperator());
+        operators.put("*", new MultiplyOperator());
+        operators.put("^", new PowerOperator());
+
+    }
 
     /**
      * retrieve the priority of an Operator
@@ -37,7 +62,7 @@ public abstract class Operator {
      * @return reference to a Operator instance.
      */
     public static Operator getOperator(String token) {
-        return null;
+        return operators.get(token);
     }
 
     
@@ -48,6 +73,8 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return false;
+        //idk if it'll work this easy...for this to work we'd have to assume
+        //the token we recieve is a single char, not a string with several chars
+        return operators.containsKey(token);
     }
 }
