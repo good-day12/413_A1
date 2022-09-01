@@ -47,8 +47,11 @@ public class Evaluator {
           // The Operator class should contain an instance of a HashMap,
           // and values will be instances of the Operators.  See Operator class
           // skeleton for an example.
-          Operator newOperator = new Operator();
-        
+
+          //this should be the getoperator right? but what would the argument be then?
+//          Operator newOperator = new Operator();
+          Operator newOperator = Operator.getOperator(expressionToken);
+
           while (operatorStack.peek().priority() >= newOperator.priority() ) {
             // note that when we eval the expression 1 - 2 we will
             // push the 1 then the 2 and then do the subtraction operation
