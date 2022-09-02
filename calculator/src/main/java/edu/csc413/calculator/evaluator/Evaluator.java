@@ -32,15 +32,23 @@ public class Evaluator {
 
 
     while ( this.expressionTokenizer.hasMoreTokens() ) {
+      outterLoop: //break will return code here
       // filter out spaces
       if ( !( expressionToken = this.expressionTokenizer.nextToken() ).equals( " " )) {
         //check for closed parenthesis
-        if (expressionToken == ")"){
+        if (expressionToken.equals(")")){
+          //create compare Operator to check if stack has another open parenthesis
           Operator compare = Operator.getOperator("(");
-          while (operatorStack.peek() != compare) {
+          //while it isn't an open parenthesis, use equate function to process equation
+          while (!operatorStack.peek().equals(compare)) {
             equate(operandStack, operatorStack);
           }
+          operatorStack.pop(); //do this to get rid of the open parenthesis object in the stack
+          break outterLoop; //break to get out of loop and change expressionToken
         }
+        //break while loop to change expression token??
+        // Problem I have right now is that the expressionToken is still a parenthesis when leaving this while loop
+
 
         // check if token is an operand
         if ( Operand.check( expressionToken )) {
@@ -66,7 +74,7 @@ public class Evaluator {
           Operator newOperator = Operator.getOperator(expressionToken);
 
           //add if statement before to ensure stack is not empty
-            while ( !operatorStack.isEmpty() && expressionToken != "(" &&          //add open paranthesis check here?
+            while ( !operatorStack.isEmpty() && !expressionToken.equals("(") &&          //add open paranthesis check here?
                     operatorStack.peek().priority() >= newOperator.priority()) {
               // note that when we eval the expression 1 - 2 we will
               // push the 1 then the 2 and then do the subtraction operation
@@ -74,7 +82,7 @@ public class Evaluator {
               // second operand, not the first operand - see the following code
 
               //check if empty first!!! for peek too!!!!
-              //check for open paranthesis
+              //check for open parenthesis
 
                 equate(operandStack, operatorStack);
 
@@ -101,6 +109,7 @@ public class Evaluator {
 
   //Function to process stacks and perform equations
   //takes a stack type operand and stack type operator as arguments
+  //void return type, will alter stacks in function
    static void equate(Stack<Operand> a, Stack<Operator> b) {
       Operator operatorFromStack = b.pop();
       Operand operandTwo = a.pop();
