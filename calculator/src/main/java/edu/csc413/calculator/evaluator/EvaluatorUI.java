@@ -75,7 +75,12 @@ public class EvaluatorUI extends JFrame implements ActionListener {
      *                    button is pressed.
      */
     public void actionPerformed(ActionEvent actionEventObject) {
-
-
+        System.out.println(actionEventObject.getActionCommand()); //will print button
+        String command = actionEventObject.getActionCommand();
+        if("9".equals(command)){ //switch statement
+            this.expressionTextField.setText(this.expressionTextField.getText() + command);
+        }
+        //start with "9" to avoid reference errors with the String, if String is null, then command.equals will
+        //throw an exception because null but with "9".equals it won't send an exception
     }
 }
