@@ -17,6 +17,7 @@ public abstract class Operator {
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
 
+    //called flyweight pattern, reuse objects that are SHARABLE
 //    static Map<String,Operator> operators;
 //    static {
 //        operators.put("+", new AddOperator()); //<-will create add operator object and put into map
@@ -36,7 +37,6 @@ public abstract class Operator {
         operators.put("/", new DivideOperator());
         operators.put("*", new MultiplyOperator());
         operators.put("^", new PowerOperator());
-
     }
 
     /**
@@ -64,7 +64,6 @@ public abstract class Operator {
     public static Operator getOperator(String token) {
         return operators.get(token);
     }
-
     
      /**
      * determines if a given token is a valid operator.

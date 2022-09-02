@@ -10,7 +10,7 @@ public class Evaluator {
   private Stack<Operand> operandStack;
   private Stack<Operator> operatorStack;
   private StringTokenizer expressionTokenizer;
-  private final String delimiters = " +/*-^";
+  private final String delimiters = " +/*-^"; //don't forget, if we add new operator must add to delimiter
 
   public Evaluator() {
     operandStack = new Stack<>();
@@ -52,11 +52,14 @@ public class Evaluator {
 //          Operator newOperator = new Operator();
           Operator newOperator = Operator.getOperator(expressionToken);
 
-          while (operatorStack.peek().priority() >= newOperator.priority() ) {
+          while (operatorStack.peek().priority() >= newOperator.priority() ) { //add && statement before to ensure
+                                                                                //stack is not empty
             // note that when we eval the expression 1 - 2 we will
             // push the 1 then the 2 and then do the subtraction operation
             // This means that the first number to be popped is the
             // second operand, not the first operand - see the following code
+
+            //check if empty first!!! for peek too!!!!
             Operator operatorFromStack = operatorStack.pop();
             Operand operandTwo = operandStack.pop();
             Operand operandOne = operandStack.pop();

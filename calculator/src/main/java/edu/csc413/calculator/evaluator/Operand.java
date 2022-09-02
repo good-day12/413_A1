@@ -24,17 +24,15 @@ public class Operand {
     /**
      * return value of operand
      */
-    public int getValue() {
-        return num;
-    }
+    public int getValue() { return num; }
 
     /**
      * Check to see if given token is a valid
      * operand.
      */
     public static boolean check(String token) {
-        //use try/catch along with Integer parseInt to check if Int,
 
+        //use try/catch along with Integer parseInt to check if Int,
         try {
             Integer.parseInt(token);
         } catch(NumberFormatException ex) {
