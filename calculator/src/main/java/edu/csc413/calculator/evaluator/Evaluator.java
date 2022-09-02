@@ -49,6 +49,11 @@ public class Evaluator {
         //break while loop to change expression token??
         // Problem I have right now is that the expressionToken is still a parenthesis when leaving this while loop
 
+        /**************************************************************************************************************
+        * Should I create two classes? One for open parenthesis and one for closed parenthesis? That way I can avoid
+        * having to compare expressionToken directly to a ( and I might be able to work new code that avoids using
+        * a break? Or since it isn't broke should I not try to fix it?
+         * */
 
         // check if token is an operand
         if ( Operand.check( expressionToken )) {
