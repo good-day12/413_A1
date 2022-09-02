@@ -13,8 +13,8 @@ public class PowerOperator extends Operator {
         //to hold our result value
         int result = operandOne.getValue();
         //for loop to multiply operandOne value by itself for operandTwo number of times
-        for (int i = 0; i < operandTwo.getValue(); i++){
-            result *= result;
+        for (int i = 1; i < operandTwo.getValue(); i++){
+            result *= operandOne.getValue();
         }
         return new Operand(result);
     }
