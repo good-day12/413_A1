@@ -48,7 +48,6 @@ public class Evaluator {
           // and values will be instances of the Operators.  See Operator class
           // skeleton for an example.
 
-          //this should be the getoperator right? but what would the argument be then?
 //          Operator newOperator = new Operator();
           Operator newOperator = Operator.getOperator(expressionToken);
 
