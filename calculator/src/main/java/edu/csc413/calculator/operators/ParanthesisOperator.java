@@ -13,7 +13,4 @@ public class ParanthesisOperator extends Operator {
         return null;
     }
 
-//    public boolean isClosed(ParanthesisOperator){
-//        return false;
-//    }
 }

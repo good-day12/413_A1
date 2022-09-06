@@ -28,7 +28,7 @@ public abstract class Operator {
 //    }
 
     //this should be private right?
-    static private Map<String,Operator> operators;
+    static private final Map<String,Operator> operators;
     static { //static will run once while class is initially loaded
         //load up hashmap
         operators = new HashMap<>();
