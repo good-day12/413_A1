@@ -79,17 +79,14 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         String command = actionEventObject.getActionCommand();
 
         switch (command) {
-            case "9", "8", "7", "6", "5", "4", "3", "2",
-                    "1", "0", "(", ")", "+", "-", "/", "^", "*" ->
-                    this.expressionTextField.setText(this.expressionTextField.getText() + command);
             case "C" ->
                     //use substring of expression text field starting with first char at 0 and ending 1 before
-                    //the end of the old string so we can get rid of the most recently inputed character
+                    //the end of the old string, so we can get rid of the most recently inputted character
                     this.expressionTextField.setText(
                             this.expressionTextField.getText().substring
                                     (0, this.expressionTextField.getText().length() - 1)); //get rid of one slot
             case "CE" -> this.expressionTextField.setText(""); //clear text field
-            case "=" -> {
+            case "=" -> { //solve equation currently held in expressionTextField
                 Evaluator evaluator = new Evaluator();
                 int answer = -1;
                 try {
@@ -99,76 +96,10 @@ public class EvaluatorUI extends JFrame implements ActionListener {
                 }
                 this.expressionTextField.setText(Integer.toString(answer));
             }
-            default -> this.expressionTextField.setText("ERROR: HIT CE AND TRY AGAIN");
+            //since we are using a UI that only allows the user to click on the buttons we set, we know
+            //we can safely set the default for all the other buttons to do the same thing since the
+            //above buttons are the only ones that do anything different
+            default -> this.expressionTextField.setText(this.expressionTextField.getText() + command) ;
         }
-
-//        if ("9".equals(command)){ //switch statement
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("8".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("7".equals(command)){ //switch statement
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("6".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if("5".equals(command)){ //switch statement
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("4".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("3".equals(command)){ //switch statement
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("2".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("1".equals(command)){ //switch statement
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("C".equals(command)){
-//            this.expressionTextField.setText(
-//                    this.expressionTextField.getText().substring
-//                            (0, this.expressionTextField.getText().length() - 1)); //get rid of one slot
-//        }
-//        else if ("CE".equals(command)){
-//            this.expressionTextField.setText("");
-//        }
-//        else if ("+".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("/".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("*".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("^".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("-".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("(".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if (")".equals(command)){
-//            this.expressionTextField.setText(this.expressionTextField.getText() + command);
-//        }
-//        else if ("=".equals(command)){
-//            Evaluator evaluator = new Evaluator();
-//            int answer = -1;
-//            try {
-//                answer = evaluator.evaluateExpression(this.expressionTextField.getText());
-//            } catch (InvalidTokenException e) {
-//                e.printStackTrace();
-//            }
-//            this.expressionTextField.setText(Integer.toString(answer));
-//        }
-        //start with "9" to avoid reference errors with the String, if String is null, then command.equals will
-        //throw an exception because null but with "9".equals it won't send an exception
     }
 }
