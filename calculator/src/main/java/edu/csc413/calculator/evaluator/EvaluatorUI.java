@@ -80,7 +80,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
         switch (command) {
             case "9", "8", "7", "6", "5", "4", "3", "2",
-                    "1", "(", ")", "+", "-", "/", "^", "*" ->
+                    "1", "0", "(", ")", "+", "-", "/", "^", "*" ->
                     this.expressionTextField.setText(this.expressionTextField.getText() + command);
             case "C" ->
                     //use substring of expression text field starting with first char at 0 and ending 1 before
