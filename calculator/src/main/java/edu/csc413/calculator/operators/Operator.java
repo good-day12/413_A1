@@ -38,8 +38,6 @@ public abstract class Operator {
         operators.put("*", new MultiplyOperator());
         operators.put("^", new PowerOperator());
         operators.put("(", new ParanthesisOperator());
-        operators.put(")", new ParanthesisOperator());
-
     }
 
     /**
@@ -75,8 +73,6 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        //idk if it'll work this easy...for this to work we'd have to assume
-        //the token we recieve is a single char, not a string with several chars
         return operators.containsKey(token);
     }
 }

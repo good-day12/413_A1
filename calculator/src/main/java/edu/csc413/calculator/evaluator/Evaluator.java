@@ -44,13 +44,13 @@ public class Evaluator {
             while (!operatorStack.peek().equals(compare)) {
               equate(operandStack, operatorStack);
             }
-            operatorStack.pop(); //do this to get rid of the open parenthesis object in the stack
+            operatorStack.pop(); //do this to get rid of the open parenthesis object left over in the stack
           }
         else {
-          if ( ! Operator.check( expressionToken )) {
+          if ( ! Operator.check( expressionToken )) { //if not an operand or operator, throw exception
             throw new InvalidTokenException(expressionToken);
           }
-
+            //call new operator based on expressionToken
           Operator newOperator = Operator.getOperator(expressionToken);
 
           //if token = "(" then skip the equate function and go straight to add the parenthesis operator onto stack
@@ -71,10 +71,10 @@ public class Evaluator {
     // In order to complete the evaluation we must empty the stacks,
     // that is, we should keep evaluating the operator stack until it is empty;
     // Suggestion: create a method that processes the operator stack until empty.
-    while( !operatorStack.isEmpty() ){
-      equate(operandStack, operatorStack);
+    while( !operatorStack.isEmpty() ){ //until stack is empty
+      equate(operandStack, operatorStack); //perform our equations
     }
-    return operandStack.pop().getValue();
+    return operandStack.pop().getValue(); //our answer
   }
 
   //Function to process stacks and perform equations
