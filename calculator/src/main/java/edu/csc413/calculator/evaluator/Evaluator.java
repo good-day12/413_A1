@@ -72,14 +72,16 @@ public class Evaluator {
     // that is, we should keep evaluating the operator stack until it is empty;
     // Suggestion: create a method that processes the operator stack until empty.
     while( !operatorStack.isEmpty() ){ //until stack is empty
-      equate(operandStack, operatorStack); //perform our equations
+      equate(operandStack, operatorStack); //perform our logic to solve what is left in the stack currently
     }
     return operandStack.pop().getValue(); //our answer
   }
 
-  //Function to process stacks and perform equations
-  //takes a stack type operand and stack type operator as arguments
-  //void return type, will alter stacks in function
+    /**
+     * Method to perform math equations using two stacks, will alter stacks given
+     * @param a Stack of type Operand
+     * @param b Stack of type Operator
+     */
    static void equate(Stack<Operand> a, Stack<Operator> b) {
       Operator operatorFromStack = b.pop();
       Operand operandTwo = a.pop();

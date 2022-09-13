@@ -78,6 +78,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         System.out.println(actionEventObject.getActionCommand()); //will print button
         String command = actionEventObject.getActionCommand();
 
+        //switch to handle what to do for each command input
         switch (command) {
             case "C" ->
                     //use substring of expression text field starting with first char at 0 and ending 1 before
@@ -87,19 +88,20 @@ public class EvaluatorUI extends JFrame implements ActionListener {
                                     (0, this.expressionTextField.getText().length() - 1)); //get rid of one slot
             case "CE" -> this.expressionTextField.setText(""); //clear text field
             case "=" -> { //solve equation currently held in expressionTextField
-                Evaluator evaluator = new Evaluator();
-                int answer = -1;
-                try {
+                Evaluator evaluator = new Evaluator(); //evaluator object so we can call function
+                int answer = -1; //int to hold our result
+                try {   //try/catch to catch InvalidTokenException
                     answer = evaluator.evaluateExpression(this.expressionTextField.getText());
                 } catch (InvalidTokenException e) {
                     e.printStackTrace();
                 }
-                this.expressionTextField.setText(Integer.toString(answer));
+                this.expressionTextField.setText(Integer.toString(answer)); //set the display to show our result
             }
             //since we are using a UI that only allows the user to click on the buttons we set, we know
             //we can safely set the default for all the other buttons to do the same thing since the
             //above buttons are the only ones that do anything different
-            default -> this.expressionTextField.setText(this.expressionTextField.getText() + command) ;
+            //this will add the number or operator given to the string in the display and show it
+            default -> this.expressionTextField.setText(this.expressionTextField.getText() + command);
         }
     }
 }

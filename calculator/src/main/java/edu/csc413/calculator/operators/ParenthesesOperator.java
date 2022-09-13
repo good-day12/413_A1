@@ -2,7 +2,7 @@ package edu.csc413.calculator.operators;
 
 import edu.csc413.calculator.evaluator.Operand;
 
-public class ParanthesisOperator extends Operator {
+public class ParenthesesOperator extends Operator {
     @Override
     public int priority() {
         return 0;

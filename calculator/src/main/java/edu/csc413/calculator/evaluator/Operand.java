@@ -39,7 +39,7 @@ public class Operand {
             //if exception is thrown, our number is not an Int so return false
             return false;
         }
-        //if no exception thrown
+        //if no exception thrown, our number is an integer
         return true;
     }
 }

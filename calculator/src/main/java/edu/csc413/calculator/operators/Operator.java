@@ -27,17 +27,16 @@ public abstract class Operator {
 //        operators.get("+");
 //    }
 
-    //this should be private right?
     static private final Map<String,Operator> operators;
     static { //static will run once while class is initially loaded
-        //load up hashmap
+        //load up hashmap with our operators needed to perform equation
         operators = new HashMap<>();
         operators.put("+", new AddOperator());
         operators.put("-", new SubtractOperator());
         operators.put("/", new DivideOperator());
         operators.put("*", new MultiplyOperator());
         operators.put("^", new PowerOperator());
-        operators.put("(", new ParanthesisOperator());
+        operators.put("(", new ParenthesesOperator());
     }
 
     /**
@@ -68,10 +67,9 @@ public abstract class Operator {
     
      /**
      * determines if a given token is a valid operator.
-     * please do your best to avoid static checks
-     * for example token.equals("+") and so on.
-     * Think about what happens if we add more operators.
-     */
+      * @param token key of the operator we want to check
+      * @return bool
+      */
     public static boolean check(String token) {
         return operators.containsKey(token);
     }
